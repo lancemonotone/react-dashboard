@@ -4,8 +4,10 @@ import { Sidebar, Menu, MenuItem, useProSidebar, menuClasses } from 'react-pro-s
 import { Box, IconButton, Typography, useTheme } from '@mui/material'
 import { Link } from 'react-router-dom'
 import { tokens } from '../../theme'
+import Tooltip from '@mui/material/Tooltip'
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined'
 import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined'
+import ArrowBackIosOutlinedIcon from '@mui/icons-material/ArrowBackIosOutlined'
 import PeopleOutlinedIcon from '@mui/icons-material/PeopleOutlined'
 import ContactsOutlinedIcon from '@mui/icons-material/ContactsOutlined'
 import ReceiptOutlinedIcon from '@mui/icons-material/ReceiptOutlined'
@@ -104,6 +106,10 @@ const DashboardSidebar = () => {
     const theme = useTheme()
     const colors = tokens( theme.palette.mode )
     const active = selected === title
+    icon = !collapsed ? icon :
+        <Tooltip title={ title } arrow placement={ 'top' }>
+          <span>{ icon }</span>
+        </Tooltip>
 
     return (
         <MenuItem active={ active }
@@ -130,7 +136,7 @@ const DashboardSidebar = () => {
                  p={ 2 }>
               { !collapsed && <Typography variant={ 'h3' } color={ colors.grey[ 100 ] }>ADMIN</Typography> }
               <IconButton onClick={ () => collapseSidebar() }>
-                { <MenuOutlinedIcon/> }
+                { !collapsed ? <ArrowBackIosOutlinedIcon/> : <MenuOutlinedIcon/> }
               </IconButton>
             </Box>
 
