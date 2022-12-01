@@ -9,15 +9,15 @@ const Contacts = () => {
   const colors = tokens( theme.palette.mode )
 
   const columns = [
-    { field: 'id', headerName: 'ID', flex: 0.5 },
-    { field: 'registrarId', headerName: 'Registrar ID', flex: 1 },
-    { field: 'name', headerName: 'Name', flex: 1, cellClassName: 'name-column--cell' },
-    { field: 'age', headerName: 'Age', type: 'number', headerAlign: 'left', align: 'left', flex: 0.5 },
-    { field: 'phone', headerName: 'Phone', flex: 1 },
-    { field: 'email', headerName: 'Email', flex: 1 },
-    { field: 'address', headerName: 'Address', flex: 1 },
-    { field: 'city', headerName: 'City', flex: 1 },
-    { field: 'zipCode', headerName: 'Zip Code', flex: 1 },
+    { field: 'id', headerName: 'ID', width: 40 },
+    { field: 'registrarId', headerName: 'Registrar ID' },
+    { field: 'name', headerName: 'Name', cellClassName: 'name-column--cell' },
+    { field: 'age', headerName: 'Age', type: 'number', headerAlign: 'left', align: 'left' },
+    { field: 'phone', headerName: 'Phone' },
+    { field: 'email', headerName: 'Email' },
+    { field: 'address', headerName: 'Address' },
+    { field: 'city', headerName: 'City' },
+    { field: 'zipCode', headerName: 'Zip Code' },
   ]
 
   return (
@@ -36,7 +36,7 @@ const Contacts = () => {
                  color: colors.green[ 300 ],
                },
                '& .MuiDataGrid-columnHeaders': {
-                 backgroundColor: colors.blue[ 700 ],
+                 backgroundColor: colors.blue[ 800 ],
                  borderBlockEnd: 'none',
                },
                '& .MuiDataGrid-virtualScroller': {
@@ -44,7 +44,7 @@ const Contacts = () => {
                },
                '& .MuiDataGrid-footerContainer': {
                  borderBlockStart: 'none',
-                 backgroundColor: colors.blue[ 700 ],
+                 backgroundColor: colors.blue[ 800 ],
                },
                '& .MuiDataGrid-columnSeparator--sideRight': {
                  color: 'transparent !important',

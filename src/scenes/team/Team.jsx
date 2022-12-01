@@ -12,11 +12,10 @@ const Team = () => {
   const colors = tokens( theme.palette.mode )
 
   const columns = [
-    { field: 'id', headerName: 'ID', flex: 0.5 },
+    { field: 'id', headerName: 'ID', width: 40 },
     {
       field: 'name',
       headerName: 'Name',
-      flex: 1,
       cellClassName: 'name-column--cell',
     },
     {
@@ -25,23 +24,22 @@ const Team = () => {
       type: 'number',
       headerAlign: 'left',
       align: 'left',
-      flex: 0.5,
     },
     {
       field: 'phone',
       headerName: 'Phone',
-      flex: 1,
     },
     {
       field: 'email',
       headerName: 'Email',
-      flex: 1,
+      minWidth: 200,
     },
     {
       field: 'access',
       headerName: 'Access Level',
-      flex: 1,
-      align: 'left',
+      // align: 'center',
+      // headerAlign: 'center',
+      width: 150,
       renderCell: ( { row: { access } } ) => {
         return (
             <Box
@@ -52,9 +50,9 @@ const Team = () => {
                 justifyContent={ 'flex-start' }
                 borderRadius={ 1 }
                 backgroundColor={
-                  access === 'Admin'
-                      ? colors.green[ 500 ]
-                      : colors.green[ 700 ]
+                  access === 'admin'
+                      ? colors.green[ 700 ]
+                      : colors.blue[ 700 ]
                 }>
               { access === 'admin' && <AdminPanelSettingsOutlined/> }
               { access === 'manager' && <SecurityOutlined/> }
@@ -89,7 +87,7 @@ const Team = () => {
                  color: colors.green[ 300 ],
                },
                '& .MuiDataGrid-columnHeaders': {
-                 backgroundColor: colors.blue[ 900 ],
+                 backgroundColor: colors.blue[ 800 ],
                  borderBlockEnd: 'none',
                },
                '& .MuiDataGrid-virtualScroller': {
@@ -97,10 +95,10 @@ const Team = () => {
                },
                '& .MuiDataGrid-footerContainer': {
                  borderBlockStart: 'none',
-                 backgroundColor: colors.blue[ 700 ],
+                 backgroundColor: colors.blue[ 800 ],
                },
                '& .MuiDataGrid-columnSeparator--sideRight': {
-                 color: 'transparent',
+                 color: 'transparent !important',
                },
              } }>
           <DataGrid rows={ mockDataTeam } columns={ columns }/>
