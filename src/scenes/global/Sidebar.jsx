@@ -58,17 +58,32 @@ const DashboardSidebar = () => {
       ],
     },
     {
+      title: 'Pages',
+      items: [
+        {
+          title: 'Form',
+          icon: <PersonOutlinedIcon/>,
+          to: '/form',
+        },
+        {
+          title: 'FAQ',
+          icon: <HelpOutlinedIcon/>,
+          to: '/faq',
+        },
+        {
+          title: 'Calendar',
+          icon: <CalendarTodayOutlinedIcon/>,
+          to: '/calendar',
+        },
+      ],
+    },
+    {
       title: 'Charts',
       items: [
         {
           title: 'Bar',
           icon: <BarChartOutlinedIcon/>,
           to: '/bar',
-        },
-        {
-          title: 'Form',
-          icon: <PersonOutlinedIcon/>,
-          to: '/form',
         },
         {
           title: 'Line',
@@ -79,32 +94,16 @@ const DashboardSidebar = () => {
           title: 'Pie',
           icon: <PieChartOutlinedIcon/>,
           to: '/pie',
-        } ],
-    },
-    {
-      title: 'Other',
-      items: [
-        {
-          title: 'FAQ',
-          icon: <HelpOutlinedIcon/>,
-          to: '/faq',
         },
         {
           title: 'Geography',
           icon: <MapOutlinedIcon/>,
           to: '/geography',
-        },
-        {
-          title: 'Calendar',
-          icon: <CalendarTodayOutlinedIcon/>,
-          to: '/calendar',
         } ],
     },
   ]
 
   const Item = ( { type, title, to, icon } ) => {
-    const theme = useTheme()
-    const colors = tokens( theme.palette.mode )
     const active = selected === title
     icon = !collapsed ? icon :
         <Tooltip title={ title } arrow placement={ 'top' }>
@@ -194,26 +193,26 @@ const DashboardSidebar = () => {
                 } }>
 
               <Box display={ 'flex' }
-                   id={ 'hello' }
                    flexDirection={ 'column' }
                    justifyContent={ !collapsed ? 'space-between' : 'center' }
                    p={ 2 }>
 
-                { sections.map( section => {
+                { sections.map( ( section, i ) => {
                   return (
-                      <>
+                      <div key={ i }>
                         { !section.hideTitle &&
                         <Typography
                             textAlign={ !collapsed ? 'start' : 'center' }
                             variant={ 'h6' }
                             color={ colors.green[ 500 ] }
                             marginBlockStart={ 2 }>
-                          { section.title }</Typography> }
+                          { section.title }
+                        </Typography> }
 
-                        { section.items.map( item => {
-                          return ( <Item key={ item.name } { ...item }/> )
+                        { section.items.map( ( item, i ) => {
+                          return ( <Item key={ i } { ...item }/> )
                         } ) }
-                      </>
+                      </div>
                   )
                 } ) }
 
