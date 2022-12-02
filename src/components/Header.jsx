@@ -9,6 +9,7 @@ const Header = ( { title, subtitle } ) => {
       <>
         <Box sx={ { marginBlockEnd: 3 } }>
           <Typography variant={ 'h2' }
+                      textTransform={ 'uppercase' }
                       color={ colors.grey[ 100 ] }
                       fontWeight={ 700 }
                       sx={ { marginBlockEnd: 1 } }>
