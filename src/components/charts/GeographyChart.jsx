@@ -1,6 +1,6 @@
 //
 
-const Geography = () => {
+const GeographyChart = () => {
   return (
       <>
         <p>Geography</p>
@@ -8,4 +8,4 @@ const Geography = () => {
   )
 }
 
-export default Geography
+export default GeographyChart
