@@ -1,5 +1,5 @@
 //
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Sidebar, Menu, MenuItem, useProSidebar, menuClasses } from 'react-pro-sidebar'
 import { Box, IconButton, Typography, useTheme } from '@mui/material'
 import { Link } from 'react-router-dom'
@@ -25,16 +25,24 @@ const DashboardSidebar = () => {
   const { collapseSidebar, toggleSidebar, collapsed, toggled, broken, rtl } = useProSidebar()
   const [ selected, setSelected ] = useState( 'Dashboard' )
 
+  useEffect( () => {
+    setTimeout( () => {
+      if ( !collapsed ) {
+        collapseSidebar( true )
+      }
+    }, 1000 )
+  }, [] )
+
   const sections = [
     {
-      title: 'Dashboard',
+      title    : 'Dashboard',
       hideTitle: true,
-      items: [
+      items    : [
         {
-          type: 'link',
+          type : 'link',
           title: 'Dashboard',
-          icon: <HomeOutlinedIcon/>,
-          to: '/',
+          icon : <HomeOutlinedIcon/>,
+          to   : '/',
         } ],
     },
     {
@@ -42,18 +50,18 @@ const DashboardSidebar = () => {
       items: [
         {
           title: 'Team',
-          icon: <PeopleOutlinedIcon/>,
-          to: '/team',
+          icon : <PeopleOutlinedIcon/>,
+          to   : '/team',
         },
         {
           title: 'Invoices',
-          icon: <ReceiptOutlinedIcon/>,
-          to: '/invoices',
+          icon : <ReceiptOutlinedIcon/>,
+          to   : '/invoices',
         },
         {
           title: 'Contacts',
-          icon: <ContactsOutlinedIcon/>,
-          to: '/contacts',
+          icon : <ContactsOutlinedIcon/>,
+          to   : '/contacts',
         },
       ],
     },
@@ -62,18 +70,18 @@ const DashboardSidebar = () => {
       items: [
         {
           title: 'Form',
-          icon: <PersonOutlinedIcon/>,
-          to: '/form',
+          icon : <PersonOutlinedIcon/>,
+          to   : '/form',
         },
         {
           title: 'FAQ',
-          icon: <HelpOutlinedIcon/>,
-          to: '/faq',
+          icon : <HelpOutlinedIcon/>,
+          to   : '/faq',
         },
         {
           title: 'Calendar',
-          icon: <CalendarTodayOutlinedIcon/>,
-          to: '/calendar',
+          icon : <CalendarTodayOutlinedIcon/>,
+          to   : '/calendar',
         },
       ],
     },
@@ -82,31 +90,38 @@ const DashboardSidebar = () => {
       items: [
         {
           title: 'Bar',
-          icon: <BarChartOutlinedIcon/>,
-          to: '/bar',
+          icon : <BarChartOutlinedIcon/>,
+          to   : '/bar',
         },
         {
           title: 'Line',
-          icon: <TimelineOutlinedIcon/>,
-          to: '/line',
+          icon : <TimelineOutlinedIcon/>,
+          to   : '/line',
         },
         {
           title: 'Pie',
-          icon: <PieChartOutlinedIcon/>,
-          to: '/pie',
+          icon : <PieChartOutlinedIcon/>,
+          to   : '/pie',
         },
         {
           title: 'Geography',
-          icon: <MapOutlinedIcon/>,
-          to: '/geography',
+          icon : <MapOutlinedIcon/>,
+          to   : '/geography',
         } ],
     },
   ]
 
-  const Item = ( { type, title, to, icon } ) => {
+  const Item = ( {
+    type,
+    title,
+    to,
+    icon,
+  } ) => {
     const active = selected === title
     icon = !collapsed ? icon :
-        <Tooltip title={ title } arrow placement={ 'top' }>
+        <Tooltip title={ title }
+                 arrow
+                 placement={ 'top' }>
           <span>{ icon }</span>
         </Tooltip>
 
@@ -122,18 +137,21 @@ const DashboardSidebar = () => {
 
   return (
       <>
-        <Box display="flex" flexDirection="column" justifyContent="space-between" height="100vh">
+        <Box display="flex"
+             flexDirection="column"
+             justifyContent="space-between">
           <Sidebar backgroundColor={ 'transparent' }
-                   rootStyles={ { minHeight: '100%' } }
-                   collapsedWidth={ '100px' }
-          >
+                   rootStyles={ { minHeight: '100vh' } }
+
+                   collapsedWidth={ '60px' }>
 
             {/* Logo and menu icon*/ }
             <Box display="flex"
                  justifyContent={ !collapsed ? 'space-between' : 'center' }
                  alignItems="center"
                  p={ 2 }>
-              { !collapsed && <Typography variant={ 'h3' } color={ colors.grey[ 100 ] }>ADMIN</Typography> }
+              { !collapsed && <Typography variant={ 'h3' }
+                                          color={ colors.grey[ 100 ] }>ADMIN</Typography> }
               <IconButton onClick={ () => collapseSidebar() }>
                 { !collapsed ? <ArrowBackIosOutlinedIcon/> : <MenuOutlinedIcon/> }
               </IconButton>
@@ -143,15 +161,17 @@ const DashboardSidebar = () => {
             { !collapsed && (
                 <Box paddingInline={ 2 }>
                   {/* Avatar */ }
-                  <Box display={ 'flex' } justifyContent={ 'center' } alignItems={ 'center' }>
+                  <Box display={ 'flex' }
+                       justifyContent={ 'center' }
+                       alignItems={ 'center' }>
                     <img src={ new URL( '../../assets/6776069.jpg', import.meta.url ).href }
                          alt={ 'profile user' }
                          width={ '100px' }
                          height={ '100px' }
                          style={ {
-                           cursor: 'pointer',
+                           cursor      : 'pointer',
                            borderRadius: '50%',
-                           border: `1px solid ${ colors.green[ 700 ] }`,
+                           border      : `1px solid ${ colors.green[ 700 ] }`,
                          } }
                     />
                   </Box>
@@ -175,17 +195,23 @@ const DashboardSidebar = () => {
             {/* Menu */ }
             <Menu
                 menuItemStyles={ {
-                  icon: {
+                  icon  : {
                     marginRight: '0',
                   },
-                  button: ( { level, active, disabled } ) => {
+                  button: ( {
+                    level,
+                    active,
+                    disabled,
+                  } ) => {
                     return {
-                      padding: ( !collapsed ) ? '0' : 'undefined',
-                      justifyContent: 'center',
+                      padding        : !collapsed ? '0' : '0',
+                      justifyContent : 'center',
                       backgroundColor: 'transparent',
-                      color: active ? colors.blue[ 500 ] : 'undefined',
-                      '&:hover': {
-                        color: colors.blue[ 500 ],
+                      width          : 'fit-content',
+                      marginInline   : !collapsed ? '0' : 'auto',
+                      color          : active ? colors.blue[ 500 ] : 'undefined',
+                      '&:hover'      : {
+                        color          : colors.blue[ 500 ],
                         backgroundColor: 'transparent',
                       },
                     }
@@ -195,7 +221,7 @@ const DashboardSidebar = () => {
               <Box display={ 'flex' }
                    flexDirection={ 'column' }
                    justifyContent={ !collapsed ? 'space-between' : 'center' }
-                   p={ 2 }>
+                   p={ !collapsed ? 2 : 0 }>
 
                 { sections.map( ( section, i ) => {
                   return (
