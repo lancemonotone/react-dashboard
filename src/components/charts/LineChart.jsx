@@ -1,7 +1,5 @@
 import { ResponsiveLine } from '@nivo/line'
-import {
-  useTheme,
-} from '@mui/material'
+import { useTheme } from '@mui/material'
 import { tokens } from '../../theme'
 
 // make sure parent container have a defined height when using
@@ -14,7 +12,7 @@ const LineChart = ( {
   isDashboard = false,
   data,
 } ) => {
-  const theme  = useTheme()
+  const theme = useTheme()
   const colors = tokens( theme.palette.mode )
 
   return (
@@ -117,6 +115,8 @@ const LineChart = ( {
               'tableCellValue': {},
             },
           } }
+          enableGridX={ false }
+          enableGridY={ false }
           margin={ {
             top   : 50,
             right : 110,
@@ -145,6 +145,7 @@ const LineChart = ( {
           } }
           axisLeft={ {
             orient        : 'left',
+            tickValues    : 5,
             tickSize      : 5,
             tickPadding   : 5,
             tickRotation  : 0,
