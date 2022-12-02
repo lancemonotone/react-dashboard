@@ -3,7 +3,7 @@ import {
   useTheme,
   Typography,
 } from '@mui/material'
-import Header from '../../components/Header'
+import Header from '../global/Header'
 import Accordion from '@mui/material/Accordion'
 import AccordionDetails from '@mui/material/AccordionDetails'
 import AccordionSummary from '@mui/material/AccordionSummary'

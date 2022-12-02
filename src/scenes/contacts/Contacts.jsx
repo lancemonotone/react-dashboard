@@ -2,7 +2,7 @@ import { Box, useTheme } from '@mui/material'
 import { DataGrid, GridToolbar } from '@mui/x-data-grid'
 import { tokens } from '../../theme'
 import { mockDataContacts } from '../../data/mockData'
-import Header from '../../components/Header'
+import Header from '../global/Header'
 
 const Contacts = () => {
   const theme = useTheme()
@@ -22,38 +22,41 @@ const Contacts = () => {
 
   return (
       <>
-        <Header title={ 'Contacts' } subtitle={ 'List of contacts for future reference' }/>
+        <Header title={ 'Contacts' }
+                subtitle={ 'List of contacts for future reference' }/>
         <Box height={ '65vh' }
              sx={ {
-               marginBlockStart: 5,
-               '& .MuiDataGrid-root': {
+               marginBlockStart                                 : 5,
+               '& .MuiDataGrid-root'                            : {
                  border: 'none',
                },
-               '& .MuiDataGrid-cell': {
+               '& .MuiDataGrid-cell'                            : {
                  borderBlockEnd: 'none',
                },
-               '& .name-column--cell': {
+               '& .name-column--cell'                           : {
                  color: colors.green[ 300 ],
                },
-               '& .MuiDataGrid-columnHeaders': {
+               '& .MuiDataGrid-columnHeaders'                   : {
                  backgroundColor: colors.blue[ 800 ],
-                 borderBlockEnd: 'none',
+                 borderBlockEnd : 'none',
                },
-               '& .MuiDataGrid-virtualScroller': {
+               '& .MuiDataGrid-virtualScroller'                 : {
                  backgroundColor: colors.primary[ 400 ],
                },
-               '& .MuiDataGrid-footerContainer': {
+               '& .MuiDataGrid-footerContainer'                 : {
                  borderBlockStart: 'none',
-                 backgroundColor: colors.blue[ 800 ],
+                 backgroundColor : colors.blue[ 800 ],
                },
-               '& .MuiDataGrid-columnSeparator--sideRight': {
+               '& .MuiDataGrid-columnSeparator--sideRight'      : {
                  color: 'transparent !important',
                },
                '& .MuiDataGrid-toolbarContainer .MuiButton-text': {
                  color: `${ colors.grey[ 100 ] } !important`,
                },
              } }>
-          <DataGrid rows={ mockDataContacts } columns={ columns } components={ { Toolbar: GridToolbar } }/>
+          <DataGrid rows={ mockDataContacts }
+                    columns={ columns }
+                    components={ { Toolbar: GridToolbar } }/>
         </Box>
       </>
   )

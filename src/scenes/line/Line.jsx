@@ -1,4 +1,4 @@
-import Header from '../../components/Header'
+import Header from '../global/Header'
 import { Box } from '@mui/material'
 import { mockLineData } from '../../data/mockData'
 import LineChart from '../../components/charts/LineChart'

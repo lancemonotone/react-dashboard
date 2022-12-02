@@ -1,4 +1,4 @@
-import Header from '../../components/Header'
+import Header from '../global/Header'
 import { Box } from '@mui/material'
 import { mockPieData } from '../../data/mockData'
 import PieChart from '../../components/charts/PieChart'

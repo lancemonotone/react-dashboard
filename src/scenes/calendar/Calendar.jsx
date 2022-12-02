@@ -13,18 +13,18 @@ import {
   Typography,
   useTheme,
 } from '@mui/material'
-import Header from '../../components/Header'
+import Header from '../global/Header'
 import { tokens } from '../../theme'
 
 const Calendar = () => {
 
-  const theme  = useTheme()
+  const theme = useTheme()
   const colors = tokens( theme.palette.mode )
 
   const [ currentEvents, setCurrentEvents ] = useState( [] )
 
   const handleDateClick = ( selected ) => {
-    const title       = prompt( 'Please enter a title for your new event' )
+    const title = prompt( 'Please enter a title for your new event' )
     const calendarApi = selected.view.calendar
     calendarApi.unselect() // clear date selection
 

@@ -1,3 +1,3 @@
-import GeographyChart from '../../components/charts/GeographyChart'
+import Geography from './Geography'
 
-export default GeographyChart
+export default Geography

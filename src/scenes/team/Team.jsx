@@ -5,7 +5,7 @@ import { mockDataTeam } from '../../data/mockData'
 import { AdminPanelSettingsOutlined } from '@mui/icons-material'
 import { SecurityOutlined } from '@mui/icons-material'
 import { LockOpenOutlined } from '@mui/icons-material'
-import Header from '../../components/Header'
+import Header from '../global/Header'
 
 const Team = () => {
   const theme = useTheme()
@@ -14,32 +14,32 @@ const Team = () => {
   const columns = [
     { field: 'id', headerName: 'ID', width: 40 },
     {
-      field: 'name',
-      headerName: 'Name',
+      field        : 'name',
+      headerName   : 'Name',
       cellClassName: 'name-column--cell',
     },
     {
-      field: 'age',
-      headerName: 'Age',
-      type: 'number',
+      field      : 'age',
+      headerName : 'Age',
+      type       : 'number',
       headerAlign: 'left',
-      align: 'left',
+      align      : 'left',
     },
     {
-      field: 'phone',
+      field     : 'phone',
       headerName: 'Phone',
     },
     {
-      field: 'email',
+      field     : 'email',
       headerName: 'Email',
-      minWidth: 200,
+      minWidth  : 200,
     },
     {
-      field: 'access',
+      field     : 'access',
       headerName: 'Access Level',
       // align: 'center',
       // headerAlign: 'center',
-      width: 150,
+      width     : 150,
       renderCell: ( { row: { access } } ) => {
         return (
             <Box
@@ -61,7 +61,7 @@ const Team = () => {
                           color={ colors.grey[ 100 ] }
                           sx={ {
                             marginInlineStart: '0.5rem',
-                            cursor: 'default',
+                            cursor           : 'default',
                           } }>
                 { access.charAt( 0 ).toUpperCase() + access.slice( 1 ) }
               </Typography>
@@ -73,35 +73,37 @@ const Team = () => {
 
   return (
       <>
-        <Header title={ 'Team' } subtitle={ 'Manage the team members' }/>
+        <Header title={ 'Team' }
+                subtitle={ 'Manage the team members' }/>
         <Box height={ '65vh' }
              sx={ {
-               marginBlockStart: 5,
-               '& .MuiDataGrid-root': {
+               marginBlockStart                           : 5,
+               '& .MuiDataGrid-root'                      : {
                  border: 'none',
                },
-               '& .MuiDataGrid-cell': {
+               '& .MuiDataGrid-cell'                      : {
                  borderBlockEnd: 'none',
                },
-               '& .name-column--cell': {
+               '& .name-column--cell'                     : {
                  color: colors.green[ 300 ],
                },
-               '& .MuiDataGrid-columnHeaders': {
+               '& .MuiDataGrid-columnHeaders'             : {
                  backgroundColor: colors.blue[ 800 ],
-                 borderBlockEnd: 'none',
+                 borderBlockEnd : 'none',
                },
-               '& .MuiDataGrid-virtualScroller': {
+               '& .MuiDataGrid-virtualScroller'           : {
                  backgroundColor: colors.primary[ 400 ],
                },
-               '& .MuiDataGrid-footerContainer': {
+               '& .MuiDataGrid-footerContainer'           : {
                  borderBlockStart: 'none',
-                 backgroundColor: colors.blue[ 800 ],
+                 backgroundColor : colors.blue[ 800 ],
                },
                '& .MuiDataGrid-columnSeparator--sideRight': {
                  color: 'transparent !important',
                },
              } }>
-          <DataGrid rows={ mockDataTeam } columns={ columns }/>
+          <DataGrid rows={ mockDataTeam }
+                    columns={ columns }/>
         </Box>
       </>
   )
