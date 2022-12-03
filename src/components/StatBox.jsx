@@ -2,47 +2,40 @@ import { Box, Typography, useTheme } from '@mui/material'
 import { tokens } from '../theme'
 import ProgressCircle from './ProgressCircle'
 
-const StatBox = ( { span, title, subtitle, icon, progress, increase, progressCircleSize = '40' } ) => {
+const StatBox = ( { span, title, subtitle, icon, value, currency = false } ) => {
   const theme = useTheme()
   const colors = tokens( theme.palette.mode )
 
   return (
       <>
-        <Box gridColumn={ span }
+        <Box gridColumn={ `span ${ span }` }
              backgroundColor={ colors.primary[ 400 ] }
              display={ 'flex' }
-             flexDirection={ 'column' }
+             gap={ 1 }
+             flexDirection={ 'row' }
              alignItems={ 'center' }
-             justifyContent={ 'center' }
-             borderRadius={ 1 }>
+             justifyContent={ 'space-between' }
+             borderRadius={ 1 }
+             padding={ 2 }>
 
-          <Box display={ 'flex' } flexDirection={ 'column' } alignItems={ 'center' } justifyContent={ 'space-between' }>
+          <Box display={ 'flex' } height={ '100%' } flexDirection={ 'column' } alignItems={ 'start' } justifyContent={ 'space-between' }>
 
             { icon }
 
             <Typography variant={ 'h4' } color={ colors.grey[ 100 ] }>
-              { title }
+              {/*format title with comma separators */ }
+              { currency && '$' }{ title.toString().replace( /\B(?=(\d{3})+(?!\d))/g, ',' ) }
             </Typography>
 
-          </Box>
-
-          <Box>
-            <ProgressCircle progress={ progress } size={ progressCircleSize }/>
-          </Box>
-
-          <Box display={ 'flex' } justifyContent={ 'space-between' }>
-
-            <Typography variant={ 'h5' } color={ colors.green[ 500 ] }>
+            <Typography variant={ 'h6' } lineHeight={ 1 } color={ colors.green[ 500 ] }>
               { subtitle }
             </Typography>
 
-            <Typography variant={ 'h5' } fontStyle={ 'italic' } color={ colors.green[ 500 ] }>
-              { increase }
-            </Typography>
-
           </Box>
 
-          {/*</Box>*/ }
+          <Box display={ 'flex' } width={ '50%' } height={ '100%' } flexDirection={ 'column' } alignItems={ 'center' } justifyContent={ 'space-between' }>
+            <ProgressCircle value={ value }/>
+          </Box>
 
         </Box>
       </>

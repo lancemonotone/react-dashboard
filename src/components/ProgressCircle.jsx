@@ -1,22 +1,45 @@
-import { Box, useTheme } from '@mui/material'
+import { useTheme, CircularProgress } from '@mui/material'
+import { CircularProgressbar } from 'react-circular-progressbar'
 import { tokens } from '../theme'
 
-const ProgressCircle = ( { progress = 0.75, size = '40' } ) => {
+const ProgressCircle = ( { value = 0.75 } ) => {
   const theme = useTheme()
   const colors = tokens( theme.palette.mode )
 
-  const angle = 360 * progress
+  const angle = 100 * value
+
+  console.log( angle )
 
   return (
       <>
-        <Box sx={ {
-          background  : `radial-gradient(${ colors.primary[ 400 ] }) 55%, transparent 56%),
-          conicGradient(transparent 0deg, transparent ${ angle }deg, ${ colors.blue[ 500 ] } ${ angle }deg 360deg),
-          ${ colors.green[ 500 ] }`,
-          borderRadius: '50%',
-          width       : `${ size }px`,
-          height      : `${ size }px`,
-        } }/>
+        <CircularProgressbar value={ angle }
+                             text={ `${ ( angle ).toFixed( 1 ) }%` }
+                             styles={ {
+                               path : {
+                                 stroke: colors.green[ 500 ],
+                               },
+                               trail: {
+                                 stroke: colors.blue[ 500 ],
+                               },
+                               text : {
+                                 fontSize        : '1.5rem',
+                                 fill            : colors.grey[ 100 ],
+                                 dominantBaseline: 'middle',
+                                 textAnchor      : 'middle',
+                               },
+                             } }
+            // strokeWidth={ 5 }
+            // background={ false }
+            // backgroundPadding={ 2 }
+        />
+
+        {/*<CircularProgress variant={ 'determinate' }*/ }
+        {/*                  value={ angle }*/ }
+        {/*                  size={ size }*/ }
+        {/*                  thickness={ 4 }*/ }
+        {/*                  sx={ {*/ }
+        {/*                    color: colors.blue[ 500 ],*/ }
+        {/*                  } }/>*/ }
       </>
   )
 }

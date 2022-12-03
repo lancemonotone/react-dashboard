@@ -1,20 +1,18 @@
 import Header from '../global/Header'
 import { Box, Button, IconButton, Typography, useTheme } from '@mui/material'
 import { tokens } from '../../theme'
+import { mockBarData, mockGeographyData, mockLineData, mockPieData } from '../../data/mockData'
 import { mockTransactions } from '../../data/mockData'
 import {
   DownloadOutlined,
-  Email,
-  PointOfSale,
-  PersonAdd,
-  Traffic,
 } from '@mui/icons-material'
 import LineChart from '../../components/charts/LineChart'
 import PieChart from '../../components/charts/PieChart'
 import BarChart from '../../components/charts/BarChart'
 import GeographyChart from '../../components/charts/GeographyChart'
-import StatBox from '../../components/StatBox'
-import ProgressCircle from '../../components/ProgressCircle'
+import StatBoxes from './StatBoxes'
+import ChartBox from './ChartBox'
+import RecentTransactions from './RecentTransactions'
 
 const Dashboard = () => {
   const theme = useTheme()
@@ -40,12 +38,42 @@ const Dashboard = () => {
 
         <Box display={ 'grid' } gridTemplateColumns={ 'repeat( 12, 1fr)' } gridAutoRows={ '8.75rem' } gap={ '1.25rem' }>
 
-          <StatBox span={ 'span 3' }
-                   title={ '12,250' }
-                   subtitle={ 'Emails Sent' }
-                   progress={ 0.75 }
-                   increase={ '+5.2%' }
-                   icon={ <Email sx={ { fontSize: '2rem', color: colors.green[ 600 ] } }/> }/>
+          {/* 4 StatBoxes */ }
+          <StatBoxes/>
+
+          {/* Revenue Chart */ }
+          <ChartBox chartData={ {
+            columns : 8,
+            rows    : 2,
+            title   : 'Revenue Generated',
+            subtitle: '$59,342.32',
+            chart   : <LineChart isDashboard={ true } data={ mockLineData }/>,
+          } }/>
+
+          {/* Recent Transactions */ }
+          <RecentTransactions/>
+
+          {/* 3 ChartBoxes */ }
+          <ChartBox chartData={ {
+            columns: 4,
+            rows   : 2,
+            title  : 'Campaign',
+            chart  : <PieChart isDashboard={ true } data={ mockPieData }/>,
+          } }/>
+
+          <ChartBox chartData={ {
+            columns: 4,
+            rows   : 2,
+            title  : 'Sales Quantity',
+            chart  : <BarChart isDashboard={ true } data={ mockBarData }/>,
+          } }/>
+
+          <ChartBox chartData={ {
+            columns: 4,
+            rows   : 2,
+            title  : 'Traffic By Country',
+            chart  : <GeographyChart isDashboard={ true } data={ mockGeographyData }/>,
+          } }/>
 
         </Box>
       </>
