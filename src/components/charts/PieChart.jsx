@@ -14,7 +14,7 @@ const PieChart = ( {
   isDashboard = false,
   data,
 } ) => {
-  const theme  = useTheme()
+  const theme = useTheme()
   const colors = tokens( theme.palette.mode )
 
   return (
@@ -170,56 +170,6 @@ const PieChart = ( {
               spacing   : 10,
             },
           ] }
-          // fill={ [
-          //   {
-          //     match: {
-          //       id: 'ruby',
-          //     },
-          //     id   : 'dots',
-          //   },
-          //   {
-          //     match: {
-          //       id: 'c',
-          //     },
-          //     id   : 'dots',
-          //   },
-          //   {
-          //     match: {
-          //       id: 'go',
-          //     },
-          //     id   : 'dots',
-          //   },
-          //   {
-          //     match: {
-          //       id: 'python',
-          //     },
-          //     id   : 'dots',
-          //   },
-          //   {
-          //     match: {
-          //       id: 'scala',
-          //     },
-          //     id   : 'lines',
-          //   },
-          //   {
-          //     match: {
-          //       id: 'lisp',
-          //     },
-          //     id   : 'lines',
-          //   },
-          //   {
-          //     match: {
-          //       id: 'elixir',
-          //     },
-          //     id   : 'lines',
-          //   },
-          //   {
-          //     match: {
-          //       id: 'javascript',
-          //     },
-          //     id   : 'lines',
-          //   },
-          // ] }
           legends={ [
             {
               anchor       : 'bottom',
